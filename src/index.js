@@ -6,6 +6,10 @@ const app = express();
 const port = 3000;
 
 app.use(express.static(path.join(__dirname,'public')))
+app.use(express.urlencoded({
+  extended: true
+}))
+app.use(express.json())
 
 // Http logger
 app.use(morgan('combined'));
@@ -23,6 +27,14 @@ app.get('/', function (req, res) {
 
 app.get('/news', function (req, res) {
   res.render('news');
+})
+
+app.get('/search', function (req, res) {
+  res.render('search');
+})
+
+app.post('/search', function (req, res) {
+  res.send('');
 })
 
 app.listen(port, () => {
